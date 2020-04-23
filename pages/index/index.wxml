@@ -1,4 +1,38 @@
 <!--index.wxml-->
 <view class="main">
-  
+  <!-- 搜索start -->
+  <searchInput></searchInput>
+  <!-- 搜索end -->
+
+  <!-- 轮播start -->
+  <swiper class="swiper" indicator-dots="true" indicator-color="rgba(255, 255, 255, .5)" indicator-active-color="#fff" wx:if="{{swiperArr}}" >
+    <swiper-item wx:for="{{swiperArr}}" wx:key="index" wx:for-index="index" wx:for-item="item">
+      <image src="{{item.image_src}}" mode="widthFix"/>
+    </swiper-item>
+  </swiper>
+  <!-- 轮播end -->
+
+  <!-- 导航start -->
+  <view class="nav" wx:if="{{navArr}}">
+    <view class="nav_item" wx:for="{{navArr}}" wx:key="index" wx:for-index="index" wx:for-item="item">
+      <image src="{{item.image_src}}" mode="widthFix"/>
+    </view>
+  </view>
+  <!-- 导航end -->
+
+  <!-- 楼层start -->
+  <view class="floor" wx:for="{{floorData}}" wx:key="index" wx:for-index="index" wx:for-item="item">
+    <view class="floorTitle">
+      <image src="{{item.floor_title.image_src}}" mode="widthFix"/>
+    </view>
+    <view class="floor_content">
+      <view class="floor_content_left">
+        <image src="{{item.product_list[0].image_src}}"/>
+      </view>
+      <view class="floor_content_right">
+        <image src="{{floor_item.image_src}}" wx:for="{{item.product_list}}" wx:key="floor_index" wx:for-index="floor_index" wx:for-item="floor_item" wx:if="{{floor_index > 0}}" class="{{floor_index > 2 ? 'imageTop' : ''}}"/>
+      </view>
+    </view>
+  </view>
+  <!-- 楼层end -->
 </view>
